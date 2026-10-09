@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIRE ($FIRE) — The Deflationary Utility Token on Base</title>
+  <meta name="description" content="FIRE is an open-source, community-driven deflationary utility token on Base (Ethereum L2) with zero admin rights, provable on-chain vesting, and utility-driven burns.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20y=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b0c10;
+      color: #e5e7eb;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .gradient-fire {
+      background: linear-gradient(135deg, #ff4d00 0%, #ff8800 50%, #ffc400 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-border {
+      background: linear-gradient(135deg, rgba(255, 77, 0, 0.4), rgba(255, 136, 0, 0.1), rgba(255, 255, 255, 0.05));
+    }
+    .glass-card {
+      background: rgba(18, 20, 29, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 102, 0, 0.3);
+      box-shadow: 0 10px 30px -10px rgba(255, 77, 0, 0.15);
+    }
+    .glow-orange {
+      box-shadow: 0 0 50px -10px rgba(255, 77, 0, 0.35);
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-orange-500 selection:text-white">
+
+  <!-- Glow Background Effect -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-orange-600/20 via-orange-500/10 to-transparent blur-[120px] pointer-events-none -z-10"></div>
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 glass-card border-b border-white/5 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 text-2xl font-extrabold tracking-tight">
+        <span class="text-3xl">🔥</span>
+        <span class="tracking-wider">FIRE</span>
+        <span class="text-xs px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20 font-semibold uppercase">Base L2</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+        <a href="#about" class="hover:text-orange-400 transition">About</a>
+        <a href="#tokenomics" class="hover:text-orange-400 transition">Tokenomics</a>
+        <a href="#utility" class="hover:text-orange-400 transition">Utility</a>
+        <a href="#contracts" class="hover:text-orange-400 transition">Contracts</a>
+        <a href="#roadmap" class="hover:text-orange-400 transition">Roadmap</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="addTokenToMetaMask()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 transition">
+          <svg class="w-4 h-4 text-orange-400" viewBox="0 0 24 24" fill="currentColor"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+          Add to MetaMask
+        </button>
+        <a href="https://basescan.org/address/0xCB357A1A388a71cF4d54D3649D02bd5182c2b2E0" target="_blank" class="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-orange-500 to-amber-500 text-black hover:opacity-95 transition shadow-lg shadow-orange-500/20">
+          BaseScan
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="max-w-6xl mx-auto px-6 pt-20 pb-16 text-center">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold mb-8 animate-pulse">
+      <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+      OFFICIALLY LIVE ON BASE MAINNET (CHAIN ID 8453)
+    </div>
+
+    <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
+      Fueling the Base Ecosystem with <br>
+      <span class="gradient-fire">Deflationary Utility</span>
+    </h1>
+
+    <p class="max-w-2xl mx-auto text-lg text-gray-400 mb-10 leading-relaxed">
+      No VC. No Pre-sale. 100% Fair Launch. <br class="hidden sm:inline">
+      A transparent utility token designed with automated on-chain burns, zero admin privileges, and provable community trust.
+    </p>
+
+    <!-- Contract Box -->
+    <div class="max-w-2xl mx-auto glass-card rounded-2xl p-4 sm:p-5 mb-12 text-left">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">Official Token Contract</span>
+        <span class="text-xs text-emerald-400 font-medium flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+          Verified on BaseScan & Sourcify
+        </span>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-black/40 rounded-xl px-4 py-3 border border-white/5">
+        <span id="contractAddress" class="mono text-xs sm:text-sm text-gray-200 select-all break-all">0xCB357A1A388a71cF4d54D3649D02bd5182c2b2E0</span>
+        <button onclick="copyContractAddress()" class="w-full sm:w-auto px-3.5 py-1.5 rounded-lg text-xs font-medium bg-white/10 hover:bg-white/20 text-white transition flex items-center justify-center gap-1.5 whitespace-nowrap">
+          <svg id="copyIcon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span id="copyText">Copy</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+      <div class="glass-card rounded-2xl p-5 text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-white mb-1">1,000,000,000</div>
+        <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">Total Supply (Fixed)</div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mb-1">0%</div>
+        <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">Buy / Sell Tax</div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-orange-400 mb-1">6 Months</div>
+        <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">Dev Cliff Locked</div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 text-center">
+        <div class="text-2xl sm:text-3xl font-extrabold text-blue-400 mb-1">2-of-3</div>
+        <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">Base Safe Treasury</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Pillars / Why FIRE -->
+  <section id="about" class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Built for Trust & Longevity</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">Every line of code is open-source and enforces strict anti-rugpull guarantees on-chain.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass-card rounded-2xl p-8 relative overflow-hidden group">
+        <div class="text-3xl mb-4">🛡️</div>
+        <h3 class="text-xl font-bold mb-2">No Privileged Admin</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          The token has no owner (`no owner()`). There are zero backdoors: no hidden minting, no transfer pausing, no blacklisting, and no upgradeable proxies.
+        </p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-8 relative overflow-hidden group">
+        <div class="text-3xl mb-4">⏳</div>
+        <h3 class="text-xl font-bold mb-2">180-Day Enforced Cliff</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          The 20% developer allocation was minted directly into the OpenZeppelin `FireVesting` contract. Not a single token can be released until April 2027.
+        </p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-8 relative overflow-hidden group">
+        <div class="text-3xl mb-4">🏛️</div>
+        <h3 class="text-xl font-bold mb-2">Multisig Safe Treasury</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          The 5% CEX & MM treasury is held in a 2-of-3 Base Safe contract without modules. No single key can move treasury assets unilaterally.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Token Utility Section -->
+  <section id="utility" class="max-w-6xl mx-auto px-6 py-20 border-t border-white/5">
+    <div class="text-center mb-16">
+      <span class="text-xs font-semibold uppercase tracking-wider text-orange-400 mb-2 block">Real Utility</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">What Can You Do With $FIRE?</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">Connecting real on-chain utility with deflationary burn tokenomics.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass-card rounded-2xl p-8 border-orange-500/20">
+        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-xl mb-6">⚡</div>
+        <h3 class="text-lg font-bold mb-3">1. Fire Batch Sender</h3>
+        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+          A non-custodial batch transfer tool to send ETH or ERC-20 tokens to up to 300 wallets in one transaction. Saves up to 80% on gas fees.
+        </p>
+        <div class="text-xs bg-orange-500/10 border border-orange-500/20 text-orange-300 rounded-lg p-3">
+          🔥 <strong>Burn Engine:</strong> Usage fee is burned directly via <code class="mono">burnFrom</code>, permanently reducing supply.
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-8">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl mb-6">🐋</div>
+        <h3 class="text-lg font-bold mb-3">2. VIP Token-Gating</h3>
+        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+          Automated whale tracking bot and L2 liquidity locker monitoring notifications for active on-chain market intelligence.
+        </p>
+        <div class="text-xs bg-blue-500/10 border border-blue-500/20 text-blue-300 rounded-lg p-3">
+          🔒 <strong>Holder Exclusive:</strong> Free automated access for holders maintaining a minimum $FIRE balance.
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-8">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-xl mb-6">🎁</div>
+        <h3 class="text-lg font-bold mb-3">3. Round 2 Airdrop Farming</h3>
+        <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+          30,000,000 FIRE (3% of total supply) reserved for users who actively utilize the on-chain batch tools and burn tokens.
+        </p>
+        <div class="text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 rounded-lg p-3">
+          🌱 <strong>Community Rewards:</strong> Rewarding long-term participants and actual on-chain tool users.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tokenomics Section -->
+  <section id="tokenomics" class="max-w-6xl mx-auto px-6 py-20 border-t border-white/5">
+    <div class="text-center mb-16">
+      <span class="text-xs font-semibold uppercase tracking-wider text-orange-400 mb-2 block">Distribution</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Transparent Tokenomics</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">1,000,000,000 FIRE minted once at deployment. Zero inflationary capability.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div class="space-y-4">
+        <div class="glass-card rounded-xl p-5 flex items-center justify-between border-l-4 border-l-orange-500">
+          <div>
+            <div class="font-bold text-white text-base">DEX Liquidity Pool</div>
+            <div class="text-xs text-gray-400">Uniswap V3 seeding (reserved in deployer wallet)</div>
+          </div>
+          <div class="text-right">
+            <div class="font-extrabold text-orange-400 text-lg">70%</div>
+            <div class="text-xs text-gray-400 mono">700,000,000 FIRE</div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 flex items-center justify-between border-l-4 border-l-amber-500">
+          <div>
+            <div class="font-bold text-white text-base">Developer Allocation</div>
+            <div class="text-xs text-gray-400">Locked in FireVesting (180d cliff + 540d linear)</div>
+          </div>
+          <div class="text-right">
+            <div class="font-extrabold text-amber-400 text-lg">20%</div>
+            <div class="text-xs text-gray-400 mono">200,000,000 FIRE</div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 flex items-center justify-between border-l-4 border-l-blue-500">
+          <div>
+            <div class="font-bold text-white text-base">CEX Listing & MM Treasury</div>
+            <div class="text-xs text-gray-400">Held in 2-of-3 Base Safe Multisig</div>
+          </div>
+          <div class="text-right">
+            <div class="font-extrabold text-blue-400 text-lg">5%</div>
+            <div class="text-xs text-gray-400 mono">50,000,000 FIRE</div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 flex items-center justify-between border-l-4 border-l-emerald-500">
+          <div>
+            <div class="font-bold text-white text-base">Community Airdrop</div>
+            <div class="text-xs text-gray-400">2% Round 1 + 3% Round 2 for utility adopters</div>
+          </div>
+          <div class="text-right">
+            <div class="font-extrabold text-emerald-400 text-lg">5%</div>
+            <div class="text-xs text-gray-400 mono">50,000,000 FIRE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verified On-chain Badge Box -->
+      <div class="glass-card rounded-2xl p-8 border border-white/10 text-center glow-orange">
+        <div class="text-4xl mb-4">📜</div>
+        <h3 class="text-2xl font-bold mb-2">100% On-Chain Confirmed</h3>
+        <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+          All allocations have been broadcasted and verified on Base Mainnet. The initial state was audited with our automated on-chain verification suite.
+        </p>
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          PostDeployCheck: 21 / 21 Passed (0 Warnings)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official On-Chain Contracts -->
+  <section id="contracts" class="max-w-6xl mx-auto px-6 py-20 border-t border-white/5">
+    <div class="text-center mb-16">
+      <span class="text-xs font-semibold uppercase tracking-wider text-orange-400 mb-2 block">Explorer Verification</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Official Contract Addresses</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">Inspect every contract, allocation, and multisig vault directly on BaseScan.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      <a href="https://basescan.org/address/0xCB357A1A388a71cF4d54D3649D02bd5182c2b2E0" target="_blank" class="glass-card rounded-xl p-5 hover:border-orange-500/50 transition flex items-center justify-between group">
+        <div>
+          <div class="text-xs font-medium text-gray-400 uppercase">FireToken (ERC-20)</div>
+          <div class="mono text-sm text-white font-semibold">0xCB35...b2E0</div>
+        </div>
+        <span class="text-gray-500 group-hover:text-orange-400 transition text-lg">↗</span>
+      </a>
+
+      <a href="https://basescan.org/address/0xD579bF53E084eF8f6C130F6D35844d490bF18290" target="_blank" class="glass-card rounded-xl p-5 hover:border-orange-500/50 transition flex items-center justify-between group">
+        <div>
+          <div class="text-xs font-medium text-gray-400 uppercase">FireVesting (180d Cliff)</div>
+          <div class="mono text-sm text-white font-semibold">0xD579...8290</div>
+        </div>
+        <span class="text-gray-500 group-hover:text-orange-400 transition text-lg">↗</span>
+      </a>
+
+      <a href="https://basescan.org/address/0x2fb79a099B7579F486F073D78e75fbCD6Ce76Ef6" target="_blank" class="glass-card rounded-xl p-5 hover:border-orange-500/50 transition flex items-center justify-between group">
+        <div>
+          <div class="text-xs font-medium text-gray-400 uppercase">Treasury Safe (2-of-3 Multisig)</div>
+          <div class="mono text-sm text-white font-semibold">0x2fb7...6Ef6</div>
+        </div>
+        <span class="text-gray-500 group-hover:text-orange-400 transition text-lg">↗</span>
+      </a>
+
+      <a href="https://basescan.org/address/0xA6b3a10C51E57bcda89B89B6E7aed73e646Fa449" target="_blank" class="glass-card rounded-xl p-5 hover:border-orange-500/50 transition flex items-center justify-between group">
+        <div>
+          <div class="text-xs font-medium text-gray-400 uppercase">Airdrop Distribution Wallet</div>
+          <div class="mono text-sm text-white font-semibold">0xA6b3...a449</div>
+        </div>
+        <span class="text-gray-500 group-hover:text-orange-400 transition text-lg">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section id="roadmap" class="max-w-6xl mx-auto px-6 py-20 border-t border-white/5">
+    <div class="text-center mb-16">
+      <span class="text-xs font-semibold uppercase tracking-wider text-orange-400 mb-2 block">Execution Plan</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Roadmap & Milestones</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">From fair launch to decentralized utility ecosystem expansion.</p>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6">
+      <div class="glass-card rounded-2xl p-6 border-orange-500/30">
+        <div class="text-xs font-bold text-orange-400 uppercase mb-2">Q4 2026 • Completed ✅</div>
+        <h4 class="font-bold text-white mb-2">Fair Launch & Deployment</h4>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          Base Mainnet deployment, 100% on-chain audit pass, 20% vesting lockup, and 2-of-3 Safe setup.
+        </p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6">
+        <div class="text-xs font-bold text-amber-400 uppercase mb-2">Q4 2026 • Current</div>
+        <h4 class="font-bold text-white mb-2">Round 1 Airdrop & Community</h4>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          20M FIRE Merkle claim distribution, community onboarding, CoinGecko & CoinMarketCap listings.
+        </p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6">
+        <div class="text-xs font-bold text-blue-400 uppercase mb-2">Q1 2027</div>
+        <h4 class="font-bold text-white mb-2">Batch Sender Web App</h4>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          Launch of Fire Batch Sender UI with automated FIRE burning. Target 1,000+ active holders.
+        </p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6">
+        <div class="text-xs font-bold text-purple-400 uppercase mb-2">Q2 2027</div>
+        <h4 class="font-bold text-white mb-2">CEX Listings & VIP Tools</h4>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          L2 whale alert bot launch, 30M Round 2 airdrop distribution, and Tier 2 CEX listing proposals (MEXC/Bitget).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-12 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-gray-500">
+      <div class="flex items-center gap-2 text-white font-bold text-base">
+        <span>🔥</span> FIRE on Base
+      </div>
+      <div>
+        Released under the MIT License • Fully Open-Source on <a href="https://github.com/Fire-token/fire-contracts" target="_blank" class="text-gray-400 hover:text-white underline">GitHub</a>
+      </div>
+      <div class="text-center md:text-right">
+        $FIRE is a decentralized utility token. Not financial advice.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyContractAddress() {
+      const addr = document.getElementById('contractAddress').innerText;
+      navigator.clipboard.writeText(addr).then(() => {
+        const copyText = document.getElementById('copyText');
+        copyText.innerText = 'Copied!';
+        setTimeout(() => { copyText.innerText = 'Copy'; }, 2000);
+      });
+    }
+
+    async function addTokenToMetaMask() {
+      if (typeof window.ethereum !== 'undefined') {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_watchAsset',
+            params: {
+              type: 'ERC20',
+              options: {
+                address: '0xCB357A1A388a71cF4d54D3649D02bd5182c2b2E0',
+                symbol: 'FIRE',
+                decimals: 18,
+                image: 'https://raw.githubusercontent.com/Fire-token/fire-token.github.io/main/logo.png'
+              },
+            },
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        alert('MetaMask is not installed. Please install MetaMask to add FIRE directly to your wallet.');
+      }
+    }
+  </script>
+</body>
+</html>
